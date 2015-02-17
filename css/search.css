@@ -1,0 +1,34 @@
+html, body, #main, #map_canvas  { 
+	height: 100%;
+	margin: 0; 
+	padding: 0;
+}
+
+div {
+	display:block;
+}
+
+h1, h2, h3, ul, button{
+	font-family: sans-serif;
+}
+
+button {
+	padding: 5px 5px 5px 5px;
+	font-size: 0.80em;
+}
+
+#left_pane {
+	width: 25%;
+	height: 100%;
+	float: left;
+}
+
+#forms {
+	padding-left: 15px;
+}
+
+#map_canvas {
+	width: 75%;
+	float: right;
+	height: 100%;
+}

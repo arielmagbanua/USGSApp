@@ -1,0 +1,114 @@
+html, body, #map_canvas  { 
+	height: 100%;
+	margin: 0; 
+	padding: 0;
+}
+
+div {
+	display:block;
+}
+
+h1, h2, h3, ul {
+	font-family: sans-serif;
+}
+
+button {
+	padding: 5px 5px 5px 5px;
+}
+
+#map_canvas{
+	width: 100%;
+}
+
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+#nav {
+    /*line-height: 30px;*/
+    background-color: #eeeeee;
+    height: auto;
+    width: 100%;
+    float: top;
+    padding: 10px;	      
+}
+
+#navigation_list{
+	height: auto;
+    margin: 0px;
+    margin-left: -20px;
+}
+
+#navigation_list li{
+	display: inline;
+	margin: 2px 2px 2px 2px;
+	margin-right: 5px;
+} 
+
+#navigation_list li a, #summary_links li a {
+	text-decoration: none;
+}
+
+#navigation_list li a:hover {
+	font-weight: bold;
+	color: black;
+}
+
+#summary_links li a:hover {
+	font-weight: bold;
+	color: black;
+}
+
+#section {
+    width: 75%;
+    height: 80%;
+    float: right;
+}
+
+#query_pane{
+	width: 25%;
+	height: 80%;
+	float: left;
+}
+
+#query_pane h2 {
+	text-align: center;
+}
+
+#summaries {
+	padding: 0px 25px 25px 25px;
+}
+
+#params{
+	padding: 0px 25px 25px 25px;
+}
+
+#summaries #summary_type {
+	width: 100%;
+	text-align: center;
+}
+
+#summary_links li{
+	line-height: 30px;
+}
+
+#footer {
+    background-color: black;
+    color: white;
+    clear: both;
+    text-align: center;
+   	padding: 10px;	 	 
+}
+
+/* Search Page */
+#search {
+	text-align: center;
+	font-size: 0.80em;
+}
+
+#params_table tr td{
+	padding: 5px 5px 5px 5px;
+}

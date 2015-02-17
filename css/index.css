@@ -1,0 +1,75 @@
+html, body, #main, #map_canvas  { 
+	height: 100%;
+	margin: 0; 
+	padding: 0;
+}
+
+div {
+	display:block;
+}
+
+h1, h2, h3, ul {
+	font-family: sans-serif;
+}
+
+ul li {
+	padding: 5px 5px 5px 5px;
+}
+
+div .feed_block {
+	margin-left: 15px;
+}
+
+button {
+	padding: 5px 5px 5px 5px;
+}
+
+#header {
+	width: 100%;
+	height: 70px;
+	float: top;
+	background: cyan;
+	z-index: 50;
+	padding: 15px 15px 15px 15px;	
+}
+
+.fixed {
+	position: fixed;
+    top:0; left:0;
+    width: 100%;
+}
+
+#map_canvas {
+	width: 75%;
+	float: right;
+}
+
+#left_pane {
+	width: 25%;
+	height: 100%;
+	float: left;
+	padding-top: 95px;
+}
+
+div #left_pane h2 {
+	text-align: center;
+}
+
+#footer {
+	width: 100%;
+	height: 10%;
+	float: right;
+	clear: both;
+}
+
+.feed_group_title {
+	font-size: 1.375em;
+	line-height: 1.2;
+	font-weight: 400;
+	margin-bottom: -10px;
+}
+
+.feed_group_subtitle {
+	font-size: 0.90em;
+	margin-left: 15px;
+}
