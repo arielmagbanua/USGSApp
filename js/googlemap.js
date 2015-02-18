@@ -1,19 +1,28 @@
 var map;
 var markers = [];
+var earthquakeCircle;
 
 function initialize() {
             
-  //getLocation();
+    //getLocation();
 
-  var mapOptions = {
-    center: new google.maps.LatLng(0.0,0.0),
-    zoom: 2
-  };
+    var mapOptions = {
+      center: new google.maps.LatLng(0.0,0.0),
+      zoom: 2
+    };
 
-  map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-  
-  //add markers
-  addMarkers();
+    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+    
+    //google map click event
+    google.maps.event.addListener(map,'click',function(event){
+      
+      console.log(event.latLng);
+      initCircleData(event.latLng);
+
+    });
+
+    //add markers
+    addMarkers();
 }
 /*
 function getLocation(){
@@ -107,5 +116,4 @@ function getServerData(url){
 
   xmlhttp.open("GET",url,true);
   xmlhttp.send();
-
 }

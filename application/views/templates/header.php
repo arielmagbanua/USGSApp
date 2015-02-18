@@ -4,7 +4,8 @@
 		<title><?php echo $title ?></title>
 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/style.css">
-		<script type="text/javascript" src = "<?php echo base_url();?>js/jquery-1.11.2.min.js"></script>
-		<script type="text/javascript" src = "<?php echo base_url();?>js/googlemap.js"></script>
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>js/themes/classic.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>js/themes/classic.date.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>js/themes/rtl.css">
 	</head>
 <body>

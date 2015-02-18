@@ -44,19 +44,19 @@
 			</tr>
 			<tr>
 				<td><label for="latitude">Latitude: </label></td>
-				<td><input id="latitude" type="input" name="latitude"/></td>
+				<td><input id="latitude" type="input" name="latitude" value="0.0"/></td>
 			</tr>
 			<tr>
 				<td><label for="longitude">Longitude: </label></td>
-				<td><input id="longitude" type="input" name="longitude"/></td>
+				<td><input id="longitude" type="input" name="longitude" value="0.0"/></td>
 			</tr>
 			<tr>
 				<td><label for="maxradiuskm">Max radius (km): </label></td>
-				<td><input id="maxradiuskm" type="input" name="maxradiuskm"/></td>
+				<td><input id="maxradiuskm" type="input" name="maxradiuskm" value="0.0"/></td>
 			</tr>
 			<tr>
 				<td><label for="minradiuskm">Min radius (km): </label></td>
-				<td><input id="minradiuskm" type="input" name="minradiuskm"/></td>
+				<td><input id="minradiuskm" type="input" name="minradiuskm" value="0.0"/></td>
 			</tr>
 		</table>
 		<br/><br/>
@@ -73,36 +73,88 @@
 Copyright © USGS
 </footer>
 
+<script type="text/javascript" src="<?php echo base_url();?>js/picker.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>js/legacy.js"></script> 
+<script type="text/javascript" src="<?php echo base_url();?>js/picker.date.js"></script>
+
 <script type="text/javascript">
+	
+	$('#start_date').pickadate();
+	$('#end_date').pickadate();
+
+	var earthquakeCircle;
 
 	$(document).ready(function(){
 
-	  $('#search').click(function(){
+	  	$('#search').click(function(){
 
-	    var request_base_url = "http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson";
-	    var url = "";
+		    var request_base_url = "http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson";
+		    var url = "";
 
-	    var start_date = $('#start_date').val();
-	    var end_date = $('#end_date').val();
-	    var alert_level = $('#alert_level').val();
+		    var start_date = $('#start_date').val();
+		    var end_date = $('#end_date').val();
+		    var alert_level = $('#alert_level').val();
+		    var circleLatitude = $('#latitude').val();
+		    var circleLongitude = $('#longitude').val();
+		    var minRadius = $('#minradiuskm').val();
+		    var maxRadius = $('#maxradiuskm').val();
 
-	    if(start_date!=="" && end_date!==""){
-	      url = request_base_url+"&starttime="+start_date+"&endtime="+end_date;
-	    }
+	    	if(start_date!=="" && end_date!==""){
+	      		url = request_base_url+"&starttime="+start_date+"&endtime="+end_date;
+	    	}
 
-	    if(alert_level!==""){
-	      url = url+"&alertlevel="+alert_level;
-	    }
+	    	if(alert_level!=="" && alert_level!=="all"){
+	      		url = url+"&alertlevel="+alert_level;
+	    	}
 
-	    //construct the request URL for earthquake query
-	    //var url = 'http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime='+start_date+'&endtime='+end_date;
-	    //getServerData(url);
+	    	//circle parameters
+	    	if(circleLatitude == 0.0 && circleLongitude == 0.0){
+	    		alert("invalid circle origin!");
+	    		return;
+	    	}
 
-	    if(url!==""){
-	      getServerData(url);
-	    }
+	    	if( minRadius > maxRadius || minRadius == maxRadius){
+	    		alert("Minimum Radius is greater than the Maximum Radius!");
+	    		return;
+	    	}
 
-	  });
+	    	url = url+"&latitude="+circleLatitude+"&longitude="+circleLongitude+"&minradiuskm="+minRadius+"&maxradiuskm="+maxRadius;
 
+	    	if(url!==""){
+	      		getServerData(url);
+	    	}
+
+	    	//convert km radius to meters
+	    	var radius = maxRadius * 1000;
+
+	    	//draw a circle
+	        var circleOptions = {
+	          	strokeColor: '#FF0000',
+	          	strokeOpacity: 0.8,
+	          	strokeWeight: 0.5,
+	          	fillColor: '#FF0000',
+	          	fillOpacity: 0.15,
+	          	center: new google.maps.LatLng(circleLatitude,circleLongitude),
+	          	radius: radius,
+	        	map: map,
+	        };
+
+	        if(earthquakeCircle!==undefined){
+	        	earthquakeCircle.setMap(null);
+	        }
+
+        	earthquakeCircle = new google.maps.Circle(circleOptions);
+
+	  	});
 	});
+
+	function initCircleData(latLng){
+
+		if(latLng!==undefined){
+			//alert(latLng);
+			$('#latitude').val(latLng.k);
+			$('#longitude').val(latLng.D);
+		}
+	}
+
 </script>

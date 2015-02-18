@@ -63,13 +63,13 @@ button {
 }
 
 #section {
-    width: 75%;
+    width: 70%;
     height: 80%;
     float: right;
 }
 
 #query_pane{
-	width: 25%;
+	width: 30%;
 	height: 80%;
 	float: left;
 }
